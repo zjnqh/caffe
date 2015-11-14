@@ -108,7 +108,9 @@ void Net<Dtype>::Init(const NetParameter& in_param) {
     }
     layer_names_.push_back(layer_param.name());
     if (Caffe::root_solver()) {
-      LOG(INFO) << "Creating Layer " << layer_param.name();
+
+      //jq ommit
+      // LOG(INFO) << "Creating Layer " << layer_param.name();
     }
     bool need_backward = false;
 

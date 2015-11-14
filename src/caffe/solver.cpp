@@ -112,7 +112,6 @@ void Solver<Dtype>::InitTrainNet() {
   } else {
     net_.reset(new Net<Dtype>(net_param, root_solver_->net_.get()));
   }
-  LOG(INFO)<<" InitTrainNet done";
 }
 
 template <typename Dtype>
@@ -371,6 +370,7 @@ void Solver<Dtype>::Step_forward() {
 
     // Increment the internal iter_ counter -- its value should always indicate
     // the number of times the weights have been updated.
+
 }
 template <typename Dtype>
 void Solver<Dtype>::Step_backward() {
@@ -390,6 +390,7 @@ void Solver<Dtype>::Step_backward() {
 
 template <typename Dtype>
 void Solver<Dtype>::Step_extra() {
+  // LOG(INFO)<<" jq stepping";
   // vector<Blob<Dtype>*> bottom_vec
   // const int start_iter = iter_;
   // const int stop_iter = iter_ + iters;

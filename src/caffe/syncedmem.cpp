@@ -155,4 +155,3 @@ void SyncedMemory::async_gpu_push(const cudaStream_t& stream) {
 
 }  // namespace caffe
 
-

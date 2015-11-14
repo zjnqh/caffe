@@ -50,6 +50,7 @@ class BaseDataLayer : public Layer<Dtype> {
   TransformationParameter transform_param_;
   shared_ptr<DataTransformer<Dtype> > data_transformer_;
   bool output_labels_;
+  vector<int> jqbatch_shape;
 };
 
 template <typename Dtype>
@@ -101,7 +102,9 @@ class DataLayer : public BasePrefetchingDataLayer<Dtype> {
   virtual inline int ExactNumBottomBlobs() const { return 0; }
   virtual inline int MinTopBlobs() const { return 1; }
   virtual inline int MaxTopBlobs() const { return 2; }
-
+//jq add
+// virtual void Forward_gpu(const vector<Blob<Dtype>*>& bottom,
+//       const vector<Blob<Dtype>*>& top);
  protected:
   virtual void load_batch(Batch<Dtype>* batch);
   // void InternalThreadEntry();

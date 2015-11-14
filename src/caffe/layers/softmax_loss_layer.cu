@@ -204,7 +204,7 @@ void SoftmaxWithLossLayer<Dtype>::Backward_gpu(const vector<Blob<Dtype>*>& top,
     // for(int i=0;i<nthreads;i++) {if(used_[i]==0) countjq++;}
     // LOG(INFO)<<"jq used index"<<countjq;
     const Dtype* semi_info=this->use_data_.cpu_data();
-    // const Dtype* label_info=bottom[1]->cpu_data();
+    const Dtype* label_info=bottom[1]->cpu_data();
     if (
       // false
       // bottom[1]->count()==(this->use_data_.count())
@@ -213,10 +213,9 @@ void SoftmaxWithLossLayer<Dtype>::Backward_gpu(const vector<Blob<Dtype>*>& top,
       // LOG(INFO)<<"using semi loss";
       // LOG(INFO)<<"jq using SoftmaxLossBackwardGPU_semi";
       // int jqcount=0;
-      // for (int i =0;i< outer_num_;i++){
-      //   int cp=static_cast<int>(label_info[i]-1000);
-      //   if (cp ==static_cast<int>(semi_info[i+1]-2))jqcount++;
-      // }
+      for (int i =0;i< 5;i++){
+        std::cout<<semi_info[i+1]<<" "<<label_info[i]<<" ";
+      }
       // LOG(INFO)<<" jqcount:"<<jqcount;
       const Dtype* used=this->use_data_.gpu_data();
       SoftmaxLossBackwardGPU_semi<Dtype><<<CAFFE_GET_BLOCKS(nthreads),

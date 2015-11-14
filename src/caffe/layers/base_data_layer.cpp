@@ -104,7 +104,11 @@ template <typename Dtype>
 void BasePrefetchingDataLayer<Dtype>::Forward_cpu(
     const vector<Blob<Dtype>*>& bottom, const vector<Blob<Dtype>*>& top) {
   Batch<Dtype>* batch = prefetch_full_.pop("Data layer prefetch queue empty");
+  // const int batch_size = this->layer_param_.data_param().batch_size();
+  // batch.ReshapeLike(this->jqbatch_shape);
   // Reshape to loaded data.
+  batch->data_.ReshapeLike(prefetch_[0].data_);
+  batch->label_.ReshapeLike(prefetch_[0].label_);
   top[0]->ReshapeLike(batch->data_);
   // Copy the data
   caffe_copy(batch->data_.count(), batch->data_.cpu_data(),

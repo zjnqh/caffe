@@ -227,6 +227,8 @@ template <typename Dtype>
 void WindowDataLayer<Dtype>::load_batch(Batch<Dtype>* batch) {
   // At each iteration, sample N windows where N*p are foreground (object)
   // windows and N*(1-p) are background (non-object) windows
+  // std::cout<<"jq window data layer"<<std::endl;
+  // LOG(INFO)<<"jq window data layer";
   CPUTimer batch_timer;
   batch_timer.Start();
   double read_time = 0;
